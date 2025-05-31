@@ -1,0 +1,52 @@
+/* results.css */
+
+.results {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.results h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.results p {
+  font-size: 1rem;
+  margin: 0.8rem 0;
+  color: #444;
+}
+
+.results h3 {
+  margin-top: 1.5rem;
+  color: #007bff;
+}
+
+.results ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.results ul li {
+  background-color: #f2f2f2;
+  margin: 0.4rem 0;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 600px) {
+  .results {
+    padding: 1rem;
+  }
+
+  .results p,
+  .results ul li {
+    font-size: 0.9rem;
+  }
+}
