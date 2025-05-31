@@ -1,87 +1,319 @@
-/* form.css */
-
-.form-container {
-  max-width: 600px;
-  margin: 2rem auto;
-  padding: 1.5rem;
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  font-family: Arial, sans-serif;
+/* SurveyForm.css - Optimized Version */
+:root {
+  --primary-color: #4361ee;
+  --secondary-color: #3f37c9;
+  --accent-color: #4895ef;
+  --light-color: #f8f9fa;
+  --dark-color: #212529;
+  --success-color: #4bb543;
+  --error-color: #ff3333;
+  --border-radius: 8px;
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --transition: 0.25s ease;
 }
 
-.form-container h2 {
-  text-align: center;
-  margin-bottom: 1.5rem;
-  color: #333;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-form input[type="text"],
-form input[type="email"],
-form input[type="date"],
-form button {
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: var(--dark-color);
+  background-color: white;
+}
+
+/* Base mobile styles */
+.survey-container {
   width: 100%;
-  padding: 0.7rem;
-  margin: 0.5rem 0 1rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  padding: 0 1rem;
+  margin: 1rem auto;
+}
+
+.survey-card {
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.survey-title {
+  color: var(--primary-color);
+  text-align: center;
+  margin-bottom: 0.5rem;
+  font-size: 1.75rem;
+}
+
+.survey-subtitle {
+  text-align: center;
+  color: #666;
+  margin-bottom: 1.5rem;
   font-size: 1rem;
 }
 
-form button {
-  background-color: #007bff;
+.error-message {
+  background-color: #ffeeee;
+  color: var(--error-color);
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+  border-left: 4px solid var(--error-color);
+}
+
+.form-section {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.section-title {
+  color: var(--secondary-color);
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #555;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  transition: border var(--transition);
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px rgba(72, 149, 239, 0.2);
+}
+
+/* Custom form controls */
+.food-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.food-option {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.5rem 0;
+}
+
+.hidden-checkbox {
+  position: absolute;
+  opacity: 0;
+}
+
+.custom-checkbox {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  margin-right: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
+}
+
+.hidden-checkbox:checked + .custom-checkbox {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.hidden-checkbox:checked + .custom-checkbox::after {
+  content: '✓';
+  color: white;
+  font-size: 12px;
+}
+
+/* Ratings grid - mobile first */
+.ratings-container {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-top: 1rem;
+}
+
+.ratings-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  min-width: 100%;
+}
+
+.rating-item {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+}
+
+.rating-question {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.rating-options {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5rem;
+}
+
+.rating-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.rating-label {
+  font-size: 0.7rem;
+  text-align: center;
+  margin-top: 0.3rem;
+  color: #666;
+  display: none; /* Hidden on mobile */
+}
+
+.hidden-radio {
+  position: absolute;
+  opacity: 0;
+}
+
+.custom-radio {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #ddd;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  transition: all var(--transition);
+}
+
+.hidden-radio:checked + .custom-radio {
+  border-color: var(--primary-color);
+}
+
+.hidden-radio:checked + .custom-radio::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Submit button */
+.submit-btn {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--primary-color);
   color: white;
   border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background-color var(--transition);
+  margin-top: 1.5rem;
 }
 
-form button:hover {
-  background-color: #0056b3;
+.submit-btn:hover {
+  background-color: var(--secondary-color);
 }
 
-fieldset {
-  margin-bottom: 1.5rem;
-  padding: 0.5rem 0;
-  border: none;
+.submit-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
 
-legend {
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  display: block;
-  color: #444;
-}
-
-label {
-  display: block;
-  margin-bottom: 0.4rem;
-  font-size: 0.95rem;
-}
-
-input[type="checkbox"],
-input[type="radio"] {
-  margin-right: 0.5rem;
-}
-
-.error {
-  color: red;
-  margin-bottom: 1rem;
-  text-align: center;
-  font-weight: bold;
-}
-
-@media (max-width: 600px) {
-  .form-container {
-    padding: 1rem;
+/* Tablet styles (480px and up) */
+@media (min-width: 480px) {
+  .survey-container {
+    max-width: 1200px;
+    margin: 2rem auto;
   }
 
-  form input,
-  form button {
-    font-size: 0.95rem;
+  .survey-card {
+    padding: 2rem;
+    margin-bottom: 2rem;
   }
 
-  label {
-    font-size: 0.9rem;
+  .survey-title {
+    font-size: 2rem;
   }
+
+  .survey-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+
+  .form-section {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .section-title {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .food-options {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .rating-label {
+    display: block; /* Show labels on larger screens */
+  }
+}
+
+/* Desktop styles (768px and up) */
+@media (min-width: 768px) {
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .ratings-grid {
+    min-width: 600px;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion) {
+  * {
+    transition: none !important;
+  }
+}
+
+/* Focus styles for accessibility */
+button:focus-visible,
+input:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
 }

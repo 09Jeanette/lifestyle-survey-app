@@ -1,52 +1,210 @@
-/* results.css */
-
-.results {
-  max-width: 700px;
-  margin: 2rem auto;
-  padding: 1.5rem;
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  font-family: Arial, sans-serif;
+/* results.css - Styled to match SurveyForm.css */
+:root {
+  --primary-color: #4361ee;
+  --secondary-color: #3f37c9;
+  --accent-color: #4895ef;
+  --light-color: #f8f9fa;
+  --dark-color: #212529;
+  --success-color: #4bb543;
+  --error-color: #ff3333;
+  --border-radius: 8px;
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --transition: 0.25s ease;
 }
 
-.results h2 {
+.results-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  color: var(--dark-color);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.results-container h2 {
+  color: var(--primary-color);
   text-align: center;
   margin-bottom: 1.5rem;
-  color: #333;
+  font-size: 2rem;
 }
 
-.results p {
-  font-size: 1rem;
-  margin: 0.8rem 0;
-  color: #444;
+.results-container h3 {
+  color: var(--secondary-color);
+  margin: 2rem 0 1rem;
+  font-size: 1.3rem;
+  border-bottom: 2px solid var(--accent-color);
+  padding-bottom: 0.5rem;
 }
 
-.results h3 {
-  margin-top: 1.5rem;
-  color: #007bff;
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
 }
 
-.results ul {
-  list-style-type: none;
+.stat-card {
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform var(--transition);
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+}
+
+.stat-card h3 {
+  color: var(--primary-color);
+  font-size: 1.1rem;
+  margin: 0 0 1rem;
+  border-bottom: none;
   padding: 0;
 }
 
-.results ul li {
-  background-color: #f2f2f2;
-  margin: 0.4rem 0;
-  padding: 0.6rem 1rem;
-  border-radius: 6px;
-  font-size: 0.95rem;
+.stat-card p {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--secondary-color);
+  margin: 0;
 }
 
-@media (max-width: 600px) {
-  .results {
+/* Tables */
+.table-container {
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+th, td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+th {
+  background-color: var(--light-color);
+  font-weight: 600;
+  color: var(--secondary-color);
+}
+
+tr:hover {
+  background-color: rgba(72, 149, 239, 0.05);
+}
+
+/* Loading and Error States */
+.loading, .error {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin: 2rem auto;
+  border-radius: var(--border-radius);
+}
+
+.loading {
+  background-color: rgba(72, 149, 239, 0.1);
+  color: var(--primary-color);
+}
+
+.error {
+  background-color: #ffeeee;
+  color: var(--error-color);
+  border-left: 4px solid var(--error-color);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .results-container {
+    padding: 0 0.5rem;
+    margin: 1rem auto;
+  }
+
+  .results-container h2 {
+    font-size: 1.75rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .stat-card {
     padding: 1rem;
   }
 
-  .results p,
-  .results ul li {
+  .stat-card p {
+    font-size: 1.5rem;
+  }
+
+  .table-container {
+    padding: 1rem;
+  }
+
+  th, td {
+    padding: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .results-container h3 {
+    font-size: 1.1rem;
+  }
+
+  th, td {
+    padding: 0.5rem;
     font-size: 0.9rem;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+
+/* Animation for loading */
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+.loading {
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+/* Increase width for desktop */
+@media (min-width: 992px) {
+  .results-container {
+    max-width: 1400px;
+    padding: 0 2rem;
+  }
+
+  .stats-grid {
+    gap: 2rem;
+  }
+
+  .stat-card {
+    padding: 2rem;
+  }
+
+  .table-container {
+    padding: 2rem;
   }
 }
